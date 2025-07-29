@@ -1,0 +1,110 @@
+{% extends "app/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <!-- Welcome Card -->
+        <div class="card welcome-card mb-4 border-0">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        {% if user.socialaccount_set.all.0.get_avatar_url %}
+                            <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" 
+                                 class="rounded-circle me-3" width="80" height="80" alt="Avatar">
+                        {% else %}
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" 
+                                 style="width: 80px; height: 80px;">
+                                <i class="bi bi-person-fill" style="font-size: 2.5rem;"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="flex-grow-1">
+                        <h1 class="card-title mb-1">Welcome, {{ user.first_name|default:user.email }}!</h1>
+                        <p class="text-muted mb-0">You're successfully logged in to your account</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mb-4">
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 mx-auto" style="width: 60px; height: 60px;">
+                            <i class="bi bi-speedometer2" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h5 class="card-title">Dashboard</h5>
+                        <p class="card-text">Access your personal dashboard with key metrics</p>
+                        <a href="#" class="btn btn-outline-primary w-100">Go to Dashboard</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-success bg-opacity-10 text-success rounded-circle p-3 mb-3 mx-auto" style="width: 60px; height: 60px;">
+                            <i class="bi bi-gear" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h5 class="card-title">Settings</h5>
+                        <p class="card-text">Manage your account preferences and settings</p>
+                        <a href="#" class="btn btn-outline-success w-100">Account Settings</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-info bg-opacity-10 text-info rounded-circle p-3 mb-3 mx-auto" style="width: 60px; height: 60px;">
+                            <i class="bi bi-people" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h5 class="card-title">Community</h5>
+                        <p class="card-text">Connect with other users in our community</p>
+                        <a href="#" class="btn btn-outline-info w-100">Join Community</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="card mb-4">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">Recent Activity</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex">
+                        <div class="bg-light text-primary rounded-circle p-2 me-3">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <div>
+                            <p class="mb-1">You successfully logged in to your account</p>
+                            <small class="text-muted">Just now</small>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex">
+                        <div class="bg-light text-success rounded-circle p-2 me-3">
+                            <i class="bi bi-bell"></i>
+                        </div>
+                        <div>
+                            <p class="mb-1">Your profile is 65% complete</p>
+                            <small class="text-muted">2 days ago</small>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex">
+                        <div class="bg-light text-info rounded-circle p-2 me-3">
+                            <i class="bi bi-info-circle"></i>
+                        </div>
+                        <div>
+                            <p class="mb-1">Welcome to MyApp! Get started with our tutorial</p>
+                            <small class="text-muted">5 days ago</small>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

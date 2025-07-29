@@ -1,0 +1,34 @@
+{% extends "account/base_account.html" %}
+
+{% block title %}Delete Account{% endblock %}
+
+{% block content %}
+<div class="account-card">
+    <div class="account-header">
+        <h2 class="text-danger">Delete Account</h2>
+        <p>This action is permanent and cannot be undone.</p>
+    </div>
+    
+    <div class="alert alert-danger">
+        <strong>Warning:</strong> All your data will be permanently removed.
+    </div>
+    
+    <form method="POST" action="{% url 'account_delete' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="password" class="form-label">Confirm Password</label>
+            <input type="password" name="password" 
+                   class="form-control {% if form.password.errors %}is-invalid{% endif %}" 
+                   required id="id_password">
+            {% for error in form.password.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-danger w-100">Permanently Delete My Account</button>
+    </form>
+    
+    <div class="text-center mt-4">
+        <a href="{% url 'account_settings' %}" class="text-secondary">Back to Account Settings</a>
+    </div>
+</div>
+{% endblock %}
